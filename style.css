@@ -1,0 +1,323 @@
+/* 1. Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+            
+body {
+    background-color: #ffffff; 
+    color: #1a1a1a;
+    font-family: 'Segoe UI', 'Tahoma', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}  
+
+/* 2. Navigation */
+nav {
+    padding: 20px 5%;
+    background: transparent; 
+    border-bottom: none;
+    position: absolute; 
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: ltr;
+}
+
+.logo-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.logo-top img { height: 45px; } 
+.logo-top span { font-size: 20px; letter-spacing: 2px; font-weight: bold; color: #000; } 
+
+.nav-links { display: flex; list-style: none; gap: 30px; }
+.nav-links a { color: #000; text-decoration: none; font-size: 11px; letter-spacing: 1px; transition: 0.3s; cursor: pointer; }
+.nav-links a:hover { color: #666; }
+
+.menu-toggle {
+    display: none;
+}
+
+/* 3. Hero Section */
+.hero-section {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6)), url('background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main-logo-centered {
+    height: 160px;
+    width: auto; 
+    object-fit: contain; 
+    margin-bottom: 5px; 
+    animation: fadeInLogo 2s ease-in-out;
+}
+
+.brand-name {
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: 200;
+    margin: 0; 
+    text-transform: uppercase;
+    color: #000; 
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.tagline {
+    font-size: 10px;
+    color: #666; 
+    letter-spacing: 6px;
+    margin-top: 2px; 
+}
+
+/* --- 4. ستایلی نوێ و جوانی دوگمەکانی کاتیگۆری --- */
+.category-section {
+    padding: 60px 10% 10px 10%; 
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: nowrap; 
+    justify-content: center;
+    gap: 15px; /* بۆشایی نێوان دوگمەکان کەمێک زیاتر کرا */
+    overflow-x: auto; 
+    padding: 10px 5px 20px 5px; /* بۆ ئەوەی سێبەری دوگمەکان دەربکەوێت */
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    -webkit-overflow-scrolling: touch; 
+}
+
+.category-buttons::-webkit-scrollbar {
+    display: none; 
+}
+
+.cat-btn {
+    padding: 12px 28px;
+    background: #ffffff;
+    border: 1.5px solid #e0e0e0; /* بۆردەرێکی زۆر نەرم و جوان */
+    color: #000000; /* ڕەنگی دەقەکە ڕەشە */
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease; /* گۆڕانکارییەکە نەرم دەبێت */
+    border-radius: 50px; /* شێوەی خڕ (Pill Shape) */
+    white-space: nowrap; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02); /* سێبەرێکی زۆر کەم بۆ قووڵی */
+}
+
+/* کاتێک ماوس دەچێتە سەری */
+.cat-btn:hover {
+    border-color: #000000; /* بۆردەرەکە دەبێتە ڕەش */
+    transform: translateY(-2px); /* کەمێک بەرز دەبێتەوە */
+}
+
+/* کاتێک کلیکی لێ دەکرێت یان چالاکە */
+.cat-btn.active {
+    background: #000000; /* باکگراوەند دەبێتە ڕەش */
+    color: #ffffff; /* دەقەکە دەبێتە سپی */
+    border-color: #000000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* سێبەرەکەی زیاتر دەبێت */
+}
+/* --------------------------------- */
+
+/* 5. Products Grid */
+.collection { padding: 40px 10%; background-color: #ffffff; } 
+.section-title { margin-bottom: 30px; font-weight: 300; letter-spacing: 2px; text-align: center; text-transform: uppercase; white-space: nowrap; font-size: 18px; display: block; width: 100%; color: #000; }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    direction: ltr; 
+}
+
+.product-item {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    text-decoration: none; 
+}
+
+.product-item img {
+    width: 100%;
+    height: auto; 
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+    border-radius: 8px 8px 0 0; 
+}
+
+.product-item:hover img { 
+    transform: scale(1.08); 
+}
+
+.product-item:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); 
+}
+
+.product-name {
+    padding: 0 15px;
+    font-size: 0.75rem; 
+    font-weight: 600;
+    color: #000; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left; 
+    margin-top: 12px;
+    margin-bottom: 4px;
+    z-index: 2;
+}
+.product-price {
+    padding: 0 15px;
+    font-size: 0.85rem; 
+    font-weight: bold;
+    color: #666; 
+    letter-spacing: 0.5px;
+    text-align: left; 
+    margin-bottom: 5px;
+    z-index: 2;
+}
+
+/* 6. About & Footer */
+.about-section { padding: 100px 10%; text-align: center; background: #fafafa; }
+.about-box { max-width: 600px; margin: 0 auto; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 30px; }
+.view-btn-dark { display: inline-block; background: #000; color: #fff; padding: 12px 30px; text-decoration: none; font-size: 11px; font-weight: bold; margin-top: 20px; transition: 0.3s; }
+
+footer {
+    padding: 80px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    direction: ltr;
+}
+
+.footer-logo { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    opacity: 0.9; 
+}
+
+.footer-logo img { height: 45px; }
+
+.footer-logo span { 
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: bold; 
+    font-family: 'Segoe UI', 'Tahoma', sans-serif; 
+    color: #000;
+}
+
+.social-icons { display: flex; gap: 25px; flex-wrap: wrap; }
+.social-icons a { color: #000; font-size: 22px; transition: 0.3s; opacity: 0.6; }
+.social-icons a:hover { transform: translateY(-5px); opacity: 1; color: #c5a059; }
+
+/* Animations */
+@keyframes fadeInLogo { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        font-size: 24px;
+        color: #000;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .logo-top img, .footer-logo img { height: 35px; }
+    .logo-top span, .footer-logo span { font-size: 16px; }
+
+    .nav-links {
+        display: flex; 
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background: #ffffff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        transform: translateX(100%); 
+        transition: transform 0.4s ease;
+        z-index: 10000;
+    }
+    .nav-links.show { transform: translateX(0); }
+    .nav-links a { font-size: 18px; font-weight: 700; }
+    
+    footer { 
+        flex-direction: column; 
+        gap: 40px; 
+        text-align: center;
+        padding: 60px 5%;
+    }
+    .footer-logo { flex-direction: column; }
+    .social-icons { justify-content: center; }
+
+    .category-section {
+        padding: 30px 5% 0 5%; 
+    }
+    .category-buttons {
+        justify-content: flex-start; 
+        padding: 10px 5px 20px 5px;
+    }
+
+    .collection { padding: 40px 5%; }
+    .product-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .product-item { width: calc(50% - 5px); padding-bottom: 10px; }
+    .product-name { font-size: 0.65rem; }
+    .product-price { font-size: 0.75rem; }
+
+    .hero-section {
+        height: 70vh; 
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6)), url('background.jpeg');
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+    }
+
+    .main-logo-centered {
+        height: 140px; 
+        width: auto; 
+        object-fit: contain; 
+        margin-bottom: 5px; 
+        animation: fadeInLogo 2s ease-in-out;
+    }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T One Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+<nav>
+    <div class="nav-container">
+        <div class="logo-top" onclick="location.reload()">
+            <img src="t1.png" alt="Logo">
+            <span>T One Brand</span>
+        </div>
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#" onclick="location.reload()">HOME</a></li>
+            <li><a href="#">SHOP</a></li>
+            <li><a>ABOUT</a></li>
+            <li><a href="mailto:umedsami95@gmail.com">CONTACT</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="hero-section">
+    <div class="hero-content">
+        <img src="t1.png" alt="Main Logo" class="main-logo-centered">
+        <h1 class="brand-name">Wear Your Legacy</h1>
+        <p class="tagline">T One Brand</p>
+    </div>
+</header>
+
+<section class="category-section">
+    <div class="category-buttons">
+        <button class="cat-btn active" data-filter="all">ALL</button>
+        <button class="cat-btn" data-filter="watch">WATCH</button>
+        <button class="cat-btn" data-filter="tshirt">T-SHIRTS</button>
+        <button class="cat-btn" data-filter="hoodie">HOODIES</button>
+        <button class="cat-btn" data-filter="accessories">ACCESSORIES</button>
+        <button class="cat-btn" data-filter="new">NEW ARRIVALS</button>
+    </div>
+</section>
+
+<section class="collection" data-category="watch"><h2 class="section-title">Watch</h2><div class="product-grid" id="grid-watch"></div></section>
+<section class="collection" data-category="tshirt"><h2 class="section-title">T-Shirts</h2><div class="product-grid" id="grid-tshirt"></div></section>
+<section class="collection" data-category="hoodie"><h2 class="section-title">Hoodies</h2><div class="product-grid" id="grid-hoodie"></div></section>
+<section class="collection" data-category="accessories"><h2 class="section-title">Accessories</h2><div class="product-grid" id="grid-accessories"></div></section>
+<section class="collection" data-category="new"><h2 class="section-title">New Arrivals</h2><div class="product-grid" id="grid-new"></div></section>
+
+<section class="about-section">
+    <h2 class="section-title">ABOUT US</h2>
+    <div class="about-box">
+        <p>We Create For The Dreamers Who Became Doers</p>
+        <a href="https://wa.me/9647502358575" class="view-btn-dark">WHATSAPP US</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-logo">
+        <img src="t1.png" alt="Logo">
+        <span>T One Brand</span>
+    </div>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/t1.brand.official?igsh=MXBuaG9va3hrdm01aA=="><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@t1.brand.official"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://wa.me/9647502358575"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+</footer>
+
+<script src="product.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // 1. بارکردنی بەرهەمەکان
+    function renderProducts(category, containerId) {
+        const grid = document.getElementById(containerId);
+        if (!grid || typeof productsData === 'undefined') return;
+
+        Object.keys(productsData).forEach(id => {
+            const product = productsData[id];
+            if (product.category === category) {
+                const card = document.createElement("div"); 
+                card.className = "product-item";
+                card.style.cursor = "default"; 
+                
+                card.innerHTML = `
+                    <img src="${product.imgs[0]}" alt="${product.name}">
+                    <p class="product-name">${product.name}</p>
+                    <p class="product-price">${product.price}</p>
+                `;
+                grid.appendChild(card);
+            }
+        });
+    }
+
+    renderProducts('watch', 'grid-watch');
+    renderProducts('tshirt', 'grid-tshirt');
+    renderProducts('hoodie', 'grid-hoodie');
+    renderProducts('accessories', 'grid-accessories');
+    renderProducts('new', 'grid-new');
+
+    // 2. فلتەرکردن و گۆڕینی ڕەنگی دوگمەکان لە کاتی کلیک کردن
+    const buttons = document.querySelectorAll('.cat-btn');
+    const sections = document.querySelectorAll('.collection');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // سڕینەوەی کلاسی active لە هەموو دوگمەکان
+            buttons.forEach(b => b.classList.remove('active'));
+            // زیادکردنی کلاسی active بۆ ئەو دوگمەیەی کلیکت لێکردووە
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            // نیشاندان یان شاردنەوەی بەشەکان
+            sections.forEach(sec => {
+                if (filterValue === 'all') {
+                    sec.style.display = 'block';
+                } else {
+                    if (sec.getAttribute('data-category') === filterValue) {
+                        sec.style.display = 'block';
+                    } else {
+                        sec.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+
+    // 3. مێنوی مۆبایل
+    document.getElementById("menu-toggle").addEventListener("click", () => {
+        document.getElementById("nav-links").classList.toggle("show");
+    });
+});
+</script>
+</body>
+</html>
